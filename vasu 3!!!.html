@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextLevel Athletics</title>
+    <!-- Use Tailwind CSS for rapid styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Google Fonts for a clean, modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Apply the Inter font to all elements and set a light background */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f5f5; /* Off-white background */
+            color: #333333; /* Charcoal grey text */
+        }
+        /* Custom styles for a clean, modern look */
+        .text-accent {
+            color: #212121; /* Dark grey for accents */
+        }
+        .bg-accent-light {
+            background-color: #212121;
+        }
+        .btn-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        /* Fade-in animation for elements on load */
+        .fade-in {
+            animation: fadeIn 1s ease-in forwards;
+            opacity: 0;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        /* Utility for hiding and showing modals */
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        /* Product table styling */
+        .product-table th, .product-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .product-table th {
+            font-weight: 600;
+            color: #212121;
+        }
+        /* Flip card styling */
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            height: 400px;
+            perspective: 1000px; /* 3D perspective for the flip effect */
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; /* Hide the back of the card during the flip */
+            backface-visibility: hidden;
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+        .flip-card-front {
+            background-color: #f5f5f5;
+        }
+        .flip-card-back {
+            background-color: #212121;
+            color: white;
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    .bg.grey {
+}
+    .text.blue {
+}
+    .blue {
+}
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header Section -->
+    <header class="bg-white p-4 lg:p-6 shadow-lg fixed w-full z-50 transition-colors duration-300" id="header">
+        <div class="container mx-auto flex justify-between items-center">
+            <!-- Logo with a clean, modern design -->
+            <a href="#" class="text-3xl font-bold tracking-widest uppercase flex items-center">
+                <!-- SVG Logo -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 22h20L12 2zM12 2v20"/>
+                </svg>
+                <span class="text-accent">NextLevel</span>
+            </a>
+
+            <!-- Navigation - Hidden on mobile, shown on larger screens -->
+            <nav class="hidden lg:flex space-x-8">
+                <a href="#products" class="text-black-600 hover:text-accent font-medium transition-colors duration-200">Shop</a>
+                <a href="#reviews" class="text-black-600 hover:text-accent font-medium transition-colors duration-200">Reviews</a>
+                <a href="#about" class="text-black-600 hover:text-accent font-medium transition-colors duration-200">About</a>
+                <a href="#delivery" class="text-black-600 hover:text-accent font-medium transition-colors duration-200">Delivery</a>
+                <a href="#support" class="text-black-600 hover:text-accent font-medium transition-colors duration-200">Support</a>
+                <a href="#giftcard" class="text-black-600 hover:text-accent font-medium transition-colors duration-200">Gift Card</a>
+            </nav>
+
+            <!-- Cart icon and mobile menu button -->
+            <div class="flex items-center space-x-4">
+                <button class="text-xl text-black-600 hover:text-accent relative" onclick="openModal('cartModal')">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span id="cart-count" class="absolute -top-2 -right-2 text-xs bg-red-500 text-white rounded-full h-4 w-4 flex items-center justify-center opacity-0 transition-opacity duration-300">0</span>
+                </button>
+                <button class="lg:hidden text-black-800 text-2xl focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section class="relative h-[80vh] flex items-center justify-center p-4 bg-gray-900 text-white overflow-hidden">
+            <!-- Background image -->
+            <img src="Gemini_Generated_Image_e8pj4be8pj4be8pj.png" alt="Hero background" class="absolute inset-0 w-full h-full object-cover opacity-50">
+            <div class="relative z-10 text-center fade-in">
+                <h1 class="text-4xl lg:text-7xl font-bold mb-4">Beyond the Limits.&nbsp;</h1>
+                <p class="text-lg lg:text-2xl max-w-2xl mx-auto mb-8 text-gray-200">
+                    Discover our exclusive collection of sportswear engineered for peak performance and style.
+                </p>
+                <a href="#products" class="bg-white text-accent font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-gray-200 transition-all duration-300">
+                    Shop Now
+                </a>
+            </div>
+        </section>
+
+        <!-- Product Grid Section -->
+        <section id="products" class="container mx-auto py-16 px-4">
+            <h2 class="text-center text-4xl lg:text-5xl font-bold mb-12 text-gray-800 fade-in">Featured Collection</h2>
+
+            <!-- Product Categories & Table View Button -->
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8 fade-in">
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button class="filter-btn bg-gray-200 text-gray-800 font-medium py-2 px-6 rounded-full hover:bg-accent-light hover:text-white transition-colors duration-300 btn-hover" data-category="all">All</button>
+                    <button class="filter-btn bg-gray-200 text-gray-800 font-medium py-2 px-6 rounded-full hover:bg-accent-light hover:text-white transition-colors duration-300 btn-hover" data-category="men">Men</button>
+                    <button class="filter-btn bg-gray-200 text-gray-800 font-medium py-2 px-6 rounded-full hover:bg-accent-light hover:text-white transition-colors duration-300 btn-hover" data-category="women">Women</button>
+                    <button class="filter-btn bg-gray-200 text-gray-800 font-medium py-2 px-6 rounded-full hover:bg-accent-light hover:text-white transition-colors duration-300 btn-hover" data-category="kids">Kids</button>
+                    <button class="filter-btn bg-gray-200 text-gray-800 font-medium py-2 px-6 rounded-full hover:bg-accent-light hover:text-white transition-colors duration-300 btn-hover" data-category="animals">Animals</button>
+					<button class="filter-btn bg-gray-200 text-gray-800 font-medium py-2 px-6 rounded-full hover:bg-accent-light hover:text-white transition-colors duration-300 btn-hover" data-category="sports equipments">Animals</button>
+            </div>
+                <button onclick="openTableModal()" class="bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-all duration-300 btn-hover mt-4 sm:mt-0">
+                    Show in Table View
+                </button>
+            </div>
+
+            <!-- Product Grid -->
+			
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="product-grid">
+                <!-- Product cards for men -->
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="men" data-id="1">
+                    <img src="men's tee.jpg" alt="Men's Athletic Tee" class="w-full h-64 object-cover">
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Men's Athletic Tee</h3>
+                      <p><em>A performance-focused tee designed for comfort and unrestricted movement.</em></p>
+                        <p>&nbsp;</p>
+<p class="text-lg font-light text-gray-600 mb-4">&nbsp;₹2,500</p>
+                        <div class="flex items-center justify-center space-x-2">
+                            <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light">
+                            <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="men" data-id="2">
+                    <img src="men's short.jpg" alt="Men's Flex Shorts" class="w-full h-64 object-cover">
+                    <div class="p-6 text-center">
+                      <h3 class="text-xl font-semibold text-gray-800 mb-2">Men's Flex Shorts</h3>
+                      <p><em>Shorts built for performance with a flexible fit and feel.</em></p>
+                      <p>&nbsp;</p>
+<p class="text-lg font-light text-gray-600 mb-4">₹1,500&nbsp;</p>
+                        <div class="flex items-center justify-center space-x-2">
+                            <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light">
+                            <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+			 
+		
+           <!-- New product cards for men -->
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="men" data-id="9">
+                    <img src="hoodie.jpeg" alt="Men's Performance Hoodie" class="w-full h-64 object-cover">
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Men's Performance Hoodie</h3>
+                      <p><em>Crafted for warmth and mobility, this hoodie is ideal for workouts.</em></p>
+                        <p>&nbsp;</p>
+<p class="text-lg font-light text-gray-600 mb-4">₹2,000&nbsp;</p>
+                        <div class="flex items-center justify-center space-x-2">
+                            <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light">
+                            <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+			  
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="men" data-id="10">
+                    <img src="men's pants.png" alt="Men's Compression Pants" class="w-full h-64 object-cover">
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Men's Compression Pants</h3>
+                      <p><em>Supportive, muscle-stabilizing pants designed for enhanced performance and recovery.</em></p>
+                        <p>&nbsp;</p>
+<p class="text-lg font-light text-gray-600 mb-4">&nbsp; ₹1,500</p>
+                        <div class="flex items-center justify-center space-x-2">
+                            <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light">
+                            <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product cards for women -->
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="women" data-id="3">
+                    <img src="leggings.jpg" alt="Women's Running Leggings" class="w-full h-64 object-cover">
+                    <div class="p-6 text-center">
+                      <h3 class="text-xl font-semibold text-gray-800 mb-2">Women's Running Leggings</h3>
+                      <p> <em> Leggings with a supportive fit and breathable fabric for long-distance runs.&nbsp;</em></p>
+                      <p>&nbsp;</p>
+<p class="text-lg font-light text-gray-600 mb-4">₹4,500&nbsp;</p>
+                        <div class="flex items-center justify-center space-x-2">
+                            <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light">
+                            <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="women" data-id="4">
+                    <img src="spprts bra.jpg" alt="Women's Sport Bra" class="w-full h-64 object-cover">
+                    <div class="p-6 text-center">
+                      <h3 class="text-xl font-semibold text-gray-800 mb-2">Women's Sport Bra</h3>
+                      <p><em>Supportive fit and moisture-wicking fabric for intense workouts.&nbsp;</em></p>
+                      <p>&nbsp;</p>
+<p class="text-lg font-light text-gray-600 mb-4">₹2,000&nbsp;</p>
+                        <div class="flex items-center justify-center space-x-2">
+                            <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light">
+                            <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                 <!-- New product cards for women -->
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="women" data-id="11">
+                    <img src="tank top.png" alt="Women's Active Tank" class="w-full h-64 object-cover">
+                    <div class="p-6 text-center">
+                      <h3 class="text-xl font-semibold text-gray-800 mb-2">Women's Active Tank</h3>
+                      <p><em>A moisture-wicking, breathable tank top for high-intensity workouts.&nbsp;</em></p>
+                      <p><em>&nbsp;</em></p>
+<p class="text-lg font-light text-gray-600 mb-4">₹2,400&nbsp;</p>
+                        <div class="flex items-center justify-center space-x-2">
+                            <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light">
+                            <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="women" data-id="12">
+                    <img src="women's lightweight jacket.png" alt="Women's Lightweight Hoodie" class="w-full h-64 object-cover">
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Women's Lightweight Jacket</h3>
+                      <p><em>A packable, weather-resistant jacket for layering on the go.</em></p>
+                        <p><em>&nbsp;</em></p>
+<p class="text-lg font-light text-gray-600 mb-4">₹3000&nbsp;</p>
+                        <div class="flex items-center justify-center space-x-2">
+                            <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light">
+                            <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+               
+                <!-- Product cards for kids -->
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="kids" data-id="5">
+                    <img src="kids trainer.jpg" alt="Kids Trainers" class="w-full h-64 object-cover">
+                    <div class="p-6 text-center">
+                      <h3 class="text-xl font-semibold text-gray-800 mb-2">Kids Trainers</h3>
+                      <p><em>Flexible, durable trainers designed for active kids to run and play.</em></p>
+                      <p>&nbsp;</p>
+<p class="text-lg font-light text-gray-600 mb-4">₹6,000&nbsp;</p>
+                        <div class="flex items-center justify-center space-x-2">
+                            <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light">
+                            <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+                        </div>
+                  </div>
+                </div>
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="kids" data-id="6">
+                    <img src="kids jacket.jpg" alt="Kids Active Jacket" class="w-full h-64 object-cover">
+                    <div class="p-6 text-center">
+                      <h3 class="text-xl font-semibold text-gray-800 mb-2">Kids Active Jacket</h3>
+                      <p><em>A durable, weather-resistant jacket for kids' outdoor adventures.</em></p>
+                      <p>&nbsp;</p>
+<p class="text-lg font-light text-gray-600 mb-4">₹2,000&nbsp;</p>
+                        <div class="flex items-center justify-center space-x-2">
+                            <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light">
+                            <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                 <!-- New product cards for kids -->
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="kids" data-id="13">
+                    <img src="kids soccer jersey.png" alt="Kids' Soccer Jersey" class="w-full h-64 object-cover">
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Kids' Soccer Jersey</h3>
+                        <p><em>A moisture-wicking, breathable jersey designed for comfort and performance on the field.</em></p>
+<p>&nbsp;</p>
+<p class="text-lg font-light text-gray-600 mb-4">₹6,000&nbsp;</p>
+                        <div class="flex items-center justify-center space-x-2">
+                            <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light">
+                            <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="kids" data-id="14">
+                    <img src="kids track pant.png" alt="Kids' Track Pants" class="w-full h-64 object-cover">
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Kids' Track Pants</h3>
+                      <p><em>Comfortable, flexible track pants for kids to run and play.</em></p>
+                        <p>&nbsp;</p>
+<p class="text-lg font-light text-gray-600 mb-4">₹3,500&nbsp;</p>
+                        <div class="flex items-center justify-center space-x-2">
+                            <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light">
+                            <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product cards for animals -->
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="animals" data-id="7">
+                    <img src="dog's lease.jpg" alt="Sport Dog Leash" class="w-full h-64 object-cover">
+                    <div class="p-6 text-center">
+                      <h3 class="text-xl font-semibold text-gray-800 mb-2">Sport Dog Leash</h3>
+                      <p><em>A durable, comfortable leash designed for active dogs and owners.</em></p>
+                      <p>&nbsp;</p>
+<p class="text-lg font-light text-gray-600 mb-4">₹1,500&nbsp;</p>
+                        <div class="flex items-center justify-center space-x-2">
+                            <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light">
+                            <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="animals" data-id="8">
+                    <img src="pet running harness.jpg" alt="Pet Running Harness" class="w-full h-64 object-cover">
+                    <div class="p-6 text-center">
+                      <h3 class="text-xl font-semibold text-gray-800 mb-2">Pet Running Harness</h3>
+                      <p><em>A lightweight, secure harness for comfortable and safe pet runs.</em></p>
+                      <p>&nbsp;</p>
+<p class="text-lg font-light text-gray-600 mb-4">₹2,500&nbsp;</p>
+                        <div class="flex items-center justify-center space-x-2">
+                            <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light">
+                            <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                 <!-- New product cards for animals -->
+                 <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="animals" data-id="15">
+                    <img src="pets water bottle.png" alt="Pet Water Bottle" class="w-full h-64 object-cover">
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Pet Water Bottle</h3>
+                      <p><em>A leak-proof, portable bottle for keeping your pet hydrated on the go.</em></p>
+                        <p>&nbsp;</p>
+<p class="text-lg font-light text-gray-600 mb-4">₹1,000&nbsp;</p>
+                        <div class="flex items-center justify-center space-x-2">
+                            <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light">
+                            <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+                        </div>
+                   </div>
+                </div>
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="animals" data-id="16">
+                    <img src="pet cooling vest.png" alt="Pet Cooling Vest" class="w-full h-64 object-cover">
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Pet Cooling Vest</h3>
+                      <p><em>A cooling vest to keep your pet comfortable on hot days.</em></p>
+                        <p>&nbsp;</p>
+<p class="text-lg font-light text-gray-600 mb-4">₹2,500&nbsp;</p>
+                        <div class="flex items-center justify-center space-x-2">
+                            <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light">
+                            <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+							
+                      </div>
+                    </div>
+                </div>
+		<!-- Existing Pet Cooling Vest -->
+<div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="animals" data-id="16">
+  <img src="pet cooling vest.png" alt="Pet Cooling Vest" class="w-full h-64 object-cover" />
+  <div class="p-6 text-center">
+    <h3 class="text-xl font-semibold text-gray-800 mb-2">Pet Cooling Vest</h3>
+    <p><em>A cooling vest to keep your pet comfortable on hot days.</em></p>
+    <p>&nbsp;</p>
+    <p class="text-lg font-light text-gray-600 mb-4">₹2,500&nbsp;</p>
+    <div class="flex items-center justify-center space-x-2">
+      <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light" />
+      <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+    </div>
+  </div>
+</div>
+
+<!-- New Product: Football -->
+<div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="team" data-id="17">
+  <img src="Gemini_Generated_Image_hrgs8jhrgs8jhrgs (1).png" alt="Official Football" class="w-full h-64 object-cover" />
+  <div class="p-6 text-center">
+    <h3 class="text-xl font-semibold text-gray-800 mb-2">Official Football</h3>
+    <p><em>Durable, high-quality football for professional and casual play.</em></p>
+    <p>&nbsp;</p>
+    <p class="text-lg font-light text-gray-600 mb-4">₹3,200&nbsp;</p>
+    <div class="flex items-center justify-center space-x-2">
+      <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light" />
+      <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+    </div>
+  </div>
+</div>
+
+<!-- New Product: Basketball -->
+<div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="team" data-id="18">
+  <img src="Gemini_Generated_Image_rtxtktrtxtktrtxt.png" alt="Professional Basketball" class="w-full h-64 object-cover" />
+  <div class="p-6 text-center">
+    <h3 class="text-xl font-semibold text-gray-800 mb-2">Professional Basketball</h3>
+    <p><em>High grip and durable basketball for indoor and outdoor courts.</em></p>
+    <p>&nbsp;</p>
+    <p class="text-lg font-light text-gray-600 mb-4">₹2,800&nbsp;</p>
+    <div class="flex items-center justify-center space-x-2">
+      <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light" />
+      <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+    </div>
+  </div>
+</div>
+
+<!-- New Product: Tennis Racket -->
+<div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="team" data-id="19">
+  <img src="Gemini_Generated_Image_gvkygsgvkygsgvky.png" alt="Tennis Racket" class="w-full h-64 object-cover" />
+  <div class="p-6 text-center">
+    <h3 class="text-xl font-semibold text-gray-800 mb-2">Tennis Racket</h3>
+    <p><em>Lightweight racket with excellent control and power for all skill levels.</em></p>
+    <p>&nbsp;</p>
+    <p class="text-lg font-light text-gray-600 mb-4">₹5,000&nbsp;</p>
+    <div class="flex items-center justify-center space-x-2">
+      <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light" />
+      <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+    </div>
+  </div>
+</div>
+
+<!-- New Product: Pet Agility Tunnel -->
+<div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="animals" data-id="20">
+  <img src="Gemini_Generated_Image_dwwtc5dwwtc5dwwt.png" alt="Pet Agility Tunnel" class="w-full h-64 object-cover" />
+  <div class="p-6 text-center">
+    <h3 class="text-xl font-semibold text-gray-800 mb-2">Pet Agility Tunnel</h3>
+    <p><em>Fun and durable agility tunnel to keep your pet active and entertained.</em></p>
+    <p>&nbsp;</p>
+    <p class="text-lg font-light text-gray-600 mb-4">₹3,000&nbsp;</p>
+    <div class="flex items-center justify-center space-x-2">
+      <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light" />
+      <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+    </div>
+  </div>
+</div>
+			  
+<!-- Skipping Rope -->
+  <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="fitness" data-id="21">
+    <img src="Gemini_Generated_Image_1hll8m1hll8m1hll.png" alt="Skipping Rope" class="w-full h-64 object-cover" />
+    <div class="p-6 text-center">
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">Skipping Rope</h3>
+      <p><em>Adjustable, durable skipping rope for cardio and endurance training.</em></p>
+      <p>&nbsp;</p>
+      <p class="text-lg font-light text-gray-600 mb-4">₹800&nbsp;</p>
+      <div class="flex items-center justify-center space-x-2">
+        <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light" />
+        <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+			  
+  <!-- Badminton Racket -->
+  <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="team" data-id="22">
+    <img src="Gemini_Generated_Image_d5r41zd5r41zd5r4.png" alt="Badminton Racket" class="w-full h-64 object-cover" />
+    <div class="p-6 text-center">
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">Badminton Racket</h3>
+      <p><em>Lightweight racket with excellent balance and power for all skill levels.</em></p>
+      <p>&nbsp;</p>
+      <p class="text-lg font-light text-gray-600 mb-4">₹3,500&nbsp;</p>
+      <div class="flex items-center justify-center space-x-2">
+        <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light" />
+        <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+			  
+			  <!-- Training Cones -->
+  <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="fitness" data-id="23">
+    <img src="Gemini_Generated_Image_uo6bgouo6bgouo6b.png" alt="Training Cones" class="w-full h-64 object-cover" />
+    <div class="p-6 text-center">
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">Training Cones</h3>
+      <p><em>Set of 10 bright cones for agility drills and training exercises.</em></p>
+      <p>&nbsp;</p>
+      <p class="text-lg font-light text-gray-600 mb-4">₹1,200&nbsp;</p>
+      <div class="flex items-center justify-center space-x-2">
+        <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light" />
+        <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+
+			  <!-- Volleyball -->
+  <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="team" data-id="24">
+    <img src="Gemini_Generated_Image_wqnzmxwqnzmxwqnz.png" alt="Volleyball" class="w-full h-64 object-cover" />
+    <div class="p-6 text-center">
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">Volleyball</h3>
+      <p><em>Official size and weight volleyball for indoor and beach play.</em></p>
+      <p>&nbsp;</p>
+      <p class="text-lg font-light text-gray-600 mb-4">₹2,700&nbsp;</p>
+      <div class="flex items-center justify-center space-x-2">
+        <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light" />
+        <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+			  
+			  <!-- Cricket Bat -->
+  <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="team" data-id="25">
+    <img src="Gemini_Generated_Image_7cpyib7cpyib7cpy.png" alt="Cricket Bat" class="w-full h-64 object-cover" />
+    <div class="p-6 text-center">
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">Cricket Bat</h3>
+      <p><em>Premium willow cricket bat for all levels of play.</em></p>
+      <p>&nbsp;</p>
+      <p class="text-lg font-light text-gray-600 mb-4">₹6,500&nbsp;</p>
+      <div class="flex items-center justify-center space-x-2">
+        <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light" />
+        <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+			  
+			  <!-- Skating Shoes -->
+  <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="fitness" data-id="26">
+    <img src="Gemini_Generated_Image_o92rgdo92rgdo92r.png" alt="Skating Shoes" class="w-full h-64 object-cover" />
+    <div class="p-6 text-center">
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">Skating Shoes</h3>
+      <p><em>Comfortable and durable skating shoes for beginners and pros.</em></p>
+      <p>&nbsp;</p>
+      <p class="text-lg font-light text-gray-600 mb-4">₹4,200&nbsp;</p>
+      <div class="flex items-center justify-center space-x-2">
+        <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light" />
+        <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+			  
+<!-- Football Studs -->
+  <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="team" data-id="27">
+    <img src="Gemini_Generated_Image_89iv3189iv3189iv.png" alt="Football Studs" class="w-full h-64 object-cover" />
+    <div class="p-6 text-center">
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">Football Studs</h3>
+      <p><em>Lightweight and durable studs for optimal grip on the field.</em></p>
+      <p>&nbsp;</p>
+      <p class="text-lg font-light text-gray-600 mb-4">₹4,000&nbsp;</p>
+      <div class="flex items-center justify-center space-x-2">
+        <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light" />
+        <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+			  
+			  <!-- Resistance Bands -->
+  <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="fitness" data-id="29">
+    <img src="Gemini_Generated_Image_jgs3hyjgs3hyjgs3.png" alt="Resistance Bands" class="w-full h-64 object-cover" />
+    <div class="p-6 text-center">
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">Resistance Bands</h3>
+      <p><em>Set of resistance bands for strength training and flexibility.</em></p>
+      <p>&nbsp;</p>
+      <p class="text-lg font-light text-gray-600 mb-4">₹1,500&nbsp;</p>
+      <div class="flex items-center justify-center space-x-2">
+        <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light" />
+        <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+			 
+			  <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="games" data-id="31">
+  <img src="Gemini_Generated_Image_omjxtvomjxtvomjx.png" alt="Pool Balls Set" class="w-full h-64 object-cover" />
+  <div class="p-6 text-center">
+    <h3 class="text-xl font-semibold text-gray-800 mb-2">Pool Balls Set</h3>
+    <p><em>Standard 16-ball pool set for billiards and snooker games.</em></p>
+    <p>&nbsp;</p>
+    <p class="text-lg font-light text-gray-600 mb-4">₹1,800&nbsp;</p>
+    <div class="flex items-center justify-center space-x-2">
+      <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light" />
+      <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+    </div>
+  </div>
+</div>
+			  
+			  <div class="product-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300" data-category="fitness" data-id="30">
+  <img src="Gemini_Generated_Image_8kh3pi8kh3pi8kh3.png" alt="Dumbbells Set" class="w-full h-64 object-cover" />
+  <div class="p-6 text-center">
+    <h3 class="text-xl font-semibold text-gray-800 mb-2">Dumbbells Set</h3>
+    <p><em>Adjustable dumbbells set for versatile strength training at home or gym.</em></p>
+    <p>&nbsp;</p>
+    <p class="text-lg font-light text-gray-600 mb-4">₹7,500&nbsp;</p>
+    <div class="flex items-center justify-center space-x-2">
+      <input type="number" value="1" min="1" class="quantity-input w-16 text-center border rounded-md py-1 px-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-accent-light" />
+      <button class="add-to-cart-btn bg-accent-light text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Add to Cart</button>
+    </div>
+  </div>
+</div>
+			  
+		  </div>
+			  </section>
+
+        <!-- Flip Card Section -->
+        <section class="container mx-auto py-16 px-4">
+            <h2 class="text-center text-4xl lg:text-5xl font-bold mb-12 text-gray-800 fade-in">Featured Product</h2>
+            <div class="flex justify-center items-center">
+                <div class="w-full max-w-lg">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="aero boost runner.jpg" alt="Aero-Boost Runner" class="w-full h-full object-cover rounded-xl">
+                            </div>
+                            <div class="flip-card-back p-8">
+                                <h3 class="text-3xl font-bold mb-4">Aero-Boost Runner</h3>
+                                <p class="text-lg text-gray-300 text-center mb-6">Experience the next level of running with our lightweight, responsive Aero-Boost technology. Engineered for speed and comfort.</p>
+                                <button class="bg-white text-accent font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-gray-200 transition-all duration-300">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+       
+        <!-- Gift Card Section -->
+        <section id="giftcard" class="bg-gray-800 py-16 px-4">
+            <div class="container mx-auto max-w-4xl flex flex-col md:flex-row items-center justify-center gap-12 text-white">
+                <div class="md:w-1/2">
+                    <h2 class="text-4xl lg:text-5xl font-bold mb-4">Give the Gift of Performance</h2>
+                    <p class="text-lg text-gray-300 mb-8">
+                        Our gift cards are the perfect way to share the motivation. Let them choose from our entire collection of premium sportswear.
+                    </p>
+                    <form class="space-y-4">
+                        <input type="email" placeholder="Recipient's Email" class="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-white">
+                        <input type="text" placeholder="Your Name" class="w-full p-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-white">
+                        <div class="flex items-center gap-4">
+                            <label for="amount" class="text-lg font-semibold">Amount:</label>
+                            <select id="amount" class="flex-1 p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-white">
+                                <option value="₹1000">₹1000</option>
+                                <option value="₹1500">₹1500</option>
+                                <option value="₹2000">₹2000</option>
+                                <option value="₹3000">₹3000</option>
+                            </select>
+                        </div>
+                      <button type="submit" class="text-accent-light font-semibold py-3 px-6 rounded-full w-full hover:bg-gray-200 transition-all duration-300 btn-hover bg.grey"> <strong>Purchase</strong> Gift Card </button>
+                    </form>
+                </div>
+                <div class="md:w-1/2 flex justify-center items-center">
+                    <div class="relative w-full max-w-sm rounded-xl overflow-hidden shadow-2xl">
+                        <img src="https://placehold.co/600x400/f8f8f8/212121?text=NextLevel+Gift+Card" alt="Gift Card" class="w-full h-auto">
+                        <div class="absolute inset-0 p-8 flex flex-col justify-end bg-blue-900
+                            <span class="text-xl font-bold"><strong>NEXTLEVEL</strong> ATHLETICS</span>
+                            <span class="blue">GIFT CARD</span>
+                        </div>
+                    </div>
+                </div
+											  
+		</div>
+        </section>
+
+        <!-- Customer Review Section -->
+        <section id="reviews" class="bg-gray-100 py-16 px-4">
+            <h2 class="text-center text-4xl lg:text-5xl font-bold mb-12 text-gray-800 fade-in">What Our Customers Say</h2>
+            <div class="container mx-auto max-w-4xl">
+                <!-- Review 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-md mb-6 fade-in" style="animation-delay: 0.2s;">
+                    <div class="flex items-center justify-center mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-lg italic text-gray-600 mb-4 text-center">
+                        "The quality of the gear is incredible. My new running shoes feel like I'm running on clouds, and they've significantly improved my performance. Highly recommend!"
+                    </p>
+                    <p class="text-gray-500 font-semibold text-center">- Alex R.</p>
+                </div>
+                <!-- Review 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-md fade-in" style="animation-delay: 0.4s;">
+                    <div class="flex items-center justify-center mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="far fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-lg italic text-gray-600 mb-4 text-center">
+                        "I love my new training jacket. It's so comfortable and stylish. The customer service was also fantastic and helped me with my order. Great experience all around!"
+                    </p>
+                    <p class="text-gray-500 font-semibold text-center">- Sarah L.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Delivery & Checkout Section -->
+        <section id="delivery" class="container mx-auto py-16 px-4">
+            <h2 class="text-center text-4xl lg:text-5xl font-bold mb-12 text-gray-800 fade-in">Your Order  Delivery</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row gap-8 bg-white p-8 rounded-xl shadow-md">
+                    <!-- Order Summary -->
+                    <div class="md:w-1/2">
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">Order Summary</h3>
+                        <div id="order-summary" class="space-y-4">
+                            <!-- Products will be dynamically added here -->
+                            <p class="text-gray-500 text-center">Your cart is empty. Please select a product to buy.</p>
+                        </div>
+                        <div id="order-summary-total" class="mt-6 pt-4 border-t border-gray-200">
+                               <div class="flex justify-between items-center text-xl font-bold">
+                                 <span>Total:</span>
+                                 <span id="cart-total"> ₹0.00 </span>
+                             </div>
+                        </div>
+                        <div class="mt-6 flex justify-center">
+                               <a href="#products" class="bg-gray-200 text-gray-800 font-semibold py-3 px-6 rounded-full hover:bg-accent-light hover:text-white transition-all duration-300 btn-hover text-center" id="add-more-btn">
+                                 Add More Products
+                             </a>
+                        </div>
+                    </div>
+
+                    <!-- Delivery Form -->
+                    <div class="md:w-1/2">
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">Delivery Details</h3>
+                        <form class="space-y-4">
+                            <input type="text" placeholder="Full Name" class="w-full p-3 rounded-lg bg-gray-100 text-gray-800 placeholder-gray-500 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent-light">
+                            <input type="email" placeholder="Email Address" class="w-full p-3 rounded-lg bg-gray-100 text-gray-800 placeholder-gray-500 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent-light">
+                            <input type="text" placeholder="Street Address" class="w-full p-3 rounded-lg bg-gray-100 text-gray-800 placeholder-gray-500 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent-light">
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <input type="text" placeholder="City" class="w-full p-3 rounded-lg bg-gray-100 text-gray-800 placeholder-gray-500 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent-light">
+                                <input type="text" placeholder="State" class="w-full p-3 rounded-lg bg-gray-100 text-gray-800 placeholder-gray-500 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent-light">
+                                <input type="text" placeholder="Zip Code" class="w-full p-3 rounded-lg bg-gray-100 text-gray-800 placeholder-gray-500 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent-light">
+                            </div>
+                            <button type="submit" class="bg-accent-light text-white font-semibold py-3 px-6 rounded-full w-full hover:bg-gray-800 transition-all duration-300 btn-hover">
+                                Place Order
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="container mx-auto py-16 px-4">
+            <h2 class="text-center text-4xl lg:text-5xl font-bold mb-12 text-gray-800 fade-in">Our Story</h2>
+            <div class="max-w-4xl mx-auto text-center">
+                <p class="text-lg text-gray-600 leading-relaxed fade-in">
+                  At NextLevel Athletics, we believe that true performance comes from a fusion of innovation and passion. Our gear is meticulously engineered with cutting-edge materials and a relentless focus on the athlete's needs. We're not just creating sportswear; we're crafting tools to help you break barriers, push limits, and redefine what's possible. Join us on our journey to the next level.
+              </p>
+            </div>
+        </section>
+       
+        <!-- Customer Service Section -->
+        <section id="support" class="container mx-auto py-16 px-4">
+            <h2 class="text-center text-4xl lg:text-5xl font-bold mb-12 text-gray-800 fade-in">Customer Support</h2>
+            <div class="max-w-4xl mx-auto text-center">
+                <p class="text-lg text-gray-600 leading-relaxed mb-8 fade-in">
+                    Have a question or need assistance? Our team is here to help you.
+                </p>
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="flex-1 bg-white p-8 rounded-xl shadow-md fade-in" style="animation-delay: 0.2s;">
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">Contact Us</h3>
+                        <form class="space-y-4">
+                            <input type="text" placeholder="Your Name" class="w-full p-3 rounded-lg bg-gray-100 text-gray-800 placeholder-gray-500 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent-light">
+                            <input type="email" placeholder="Your Email" class="w-full p-3 rounded-lg bg-gray-100 text-gray-800 placeholder-gray-500 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent-light">
+                            <textarea placeholder="Your Message" class="w-full p-3 rounded-lg bg-gray-100 text-gray-800 placeholder-gray-500 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-accent-light" rows="6"></textarea>
+                            <button type="submit" class="bg-accent-light text-white font-semibold py-3 px-6 rounded-full w-full hover:bg-gray-800 transition-all duration-300 btn-hover">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                    <div class="flex-1 bg-white p-8 rounded-xl shadow-md fade-in" style="animation-delay: 0.4s;">
+                        <h3 class="text-2xl font-bold mb-4 text-gray-800">FAQ</h3>
+                        <div class="space-y-4 text-left">
+                            <div>
+                                <h4 class="font-bold text-gray-800">How do I track my order?</h4>
+                                <p class="text-gray-600">Once your order ships, you will receive an email with tracking information.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">What is your return policy?</h4>
+                                <p class="text-gray-600">We offer a 30-day return policy on all unworn items.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Do you ship internationally?</h4>
+                                <p class="text-gray-600">Yes, we ship to most countries worldwide. See our Delivery section for details.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section id="newsletter" class="bg-gray-900 py-16 px-4">
+          <div class="container mx-auto text-center text-white max-w-2xl">
+              <h2 class="text-4xl font-bold mb-4">Stay in the Loop</h2>
+              <p class="text-lg text-gray-300 mb-8">
+                  Sign up for our newsletter to get the latest updates on new arrivals, special offers, and training tips.
+              </p>
+              <form class="flex flex-col sm:flex-row gap-4 items-center justify-center">
+                  <input type="email" placeholder="Enter your email address" class="w-full sm:w-2/3 p-3 rounded-lg bg-gray-800 text-white placeholder-gray-500 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white">
+                  <button type="submit" class="text-accent-light font-semibold py-3 px-8 rounded-full w-full sm:w-1/3 hover:bg-blue-200 transition-all duration-300 btn-hover">
+                      Subscribe
+                  </button>
+              </form>
+          </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-white py-8 px-4 text-gray-600">
+        <div class="container mx-auto text-center">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+                <!-- Social Media Icons -->
+                <div class="flex space-x-6 mb-4 md:mb-0">
+                    <a href="#" class="text-gray-500 hover:text-accent transition-colors duration-200"><i class="fab fa-facebook-f text-2xl"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-accent transition-colors duration-200"><i class="fab fa-twitter text-2xl"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-accent transition-colors duration-200"><i class="fab fa-instagram text-2xl"></i></a>
+                    <a href="#" class="text-gray-500 hover:text-accent transition-colors duration-200"><i class="fab fa-tiktok text-2xl"></i></a>
+                </div>
+                <!-- Footer Navigation -->
+                <nav class="flex flex-wrap justify-center space-x-6">
+                    <a href="#" class="hover:text-accent transition-colors duration-200">Privacy Policy</a>
+                    <a href="#" class="hover:text-accent transition-colors duration-200">Terms of Service</a>
+                    <a href="#" class="hover:text-accent transition-colors duration-200">Returns</a>
+                    <a href="#" class="hover:text-accent transition-colors duration-200">FAQ</a>
+                </nav>
+            </div>
+            <p class="text-sm">&copy; 2025 NextLevel Athletics. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for dynamic functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Placeholder images fallback for missing local files
+            const productCards = document.querySelectorAll('.product-card img');
+            productCards.forEach(img => {
+                img.onerror = function() {
+                    const altText = this.alt;
+                    this.src = `https://placehold.co/600x400/212121/white?text=${altText.replace(/\s/g, '+')}`;
+                };
+            });
+           
+            // Header scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('bg-white', 'shadow-lg');
+                } else {
+                    header.classList.remove('bg-white', 'shadow-lg');
+                }
+            });
+
+            // Product filtering logic
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const productGrid = document.getElementById('product-grid');
+            const productCardsAll = productGrid.querySelectorAll('.product-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const category = button.getAttribute('data-category');
+                    productCardsAll.forEach(card => {
+                        const cardCategory = card.getAttribute('data-category');
+                        if (category === 'all' || cardCategory === category) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Shopping cart logic
+            let cart = [];
+
+            const updateCartDisplay = () => {
+                const cartCount = document.getElementById('cart-count');
+                const orderSummary = document.getElementById('order-summary');
+                const cartTotal = document.getElementById('cart-total');
+
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                cartCount.textContent = totalItems;
+                cartCount.classList.toggle('opacity-0', totalItems === 0);
+
+                let totalPrice = 0;
+                orderSummary.innerHTML = '';
+                if (cart.length === 0) {
+                    orderSummary.innerHTML = '<p class="text-gray-500 text-center">Your cart is empty. Please select a product to buy.</p>';
+                } else {
+                    cart.forEach(item => {
+                        const itemTotal = item.price * item.quantity;
+                        totalPrice += itemTotal;
+                        const itemElement = document.createElement('div');
+                        itemElement.classList.add('flex', 'justify-between', 'items-center', 'border-b', 'border-gray-200', 'py-2');
+                        itemElement.innerHTML = `
+                            <div>
+                                <p class="font-semibold text-gray-800">${item.name}</p>
+                                <p class="text-sm text-gray-500">$${item.price} x ${item.quantity}</p>
+                            </div>
+                            <span class="font-semibold text-gray-800">$${itemTotal.toFixed(2)}</span>
+                        `;
+                        orderSummary.appendChild(itemElement);
+                    });
+                }
+                cartTotal.textContent = `$${totalPrice.toFixed(2)}`;
+            };
+
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const productCard = event.target.closest('.product-card');
+                    const productId = productCard.getAttribute('data-id');
+                    const productName = productCard.querySelector('h3').textContent;
+                    const productPrice = parseFloat(productCard.querySelector('p.text-lg').textContent.replace('$', ''));
+                    const quantityInput = productCard.querySelector('.quantity-input');
+                    const quantity = parseInt(quantityInput.value, 10);
+
+                    const existingItem = cart.find(item => item.id === productId);
+
+                    if (existingItem) {
+                        existingItem.quantity += quantity;
+                    } else {
+                        cart.push({
+                            id: productId,
+                            name: productName,
+                            price: productPrice,
+                            quantity: quantity
+                        });
+                    }
+
+                    updateCartDisplay();
+                });
+            });
+
+            // Modal functionality
+            const modals = document.querySelectorAll('.modal-overlay');
+            const openModal = (modalId) => {
+                document.getElementById(modalId).classList.remove('hidden');
+            };
+            const closeModal = (modalId) => {
+                document.getElementById(modalId).classList.add('hidden');
+            };
+
+            // Event listeners for closing modals
+            modals.forEach(modal => {
+                const closeBtn = modal.querySelector('.close-modal-btn');
+                closeBtn.addEventListener('click', () => closeModal(modal.id));
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeModal(modal.id);
+                    }
+                });
+            });
+
+            // Global function to open modal (used by onclick)
+            window.openModal = openModal;
+            window.closeModal = closeModal;
+
+            // Product Table Modal Logic
+            const productTableModal = document.createElement('div');
+            productTableModal.id = 'productTableModal';
+            productTableModal.classList.add('modal-overlay', 'fixed', 'inset-0', 'bg-black', 'bg-opacity-75', 'z-50', 'flex', 'justify-center', 'items-center', 'hidden');
+            productTableModal.innerHTML = `
+                <div class="modal-content bg-white p-8 rounded-xl shadow-xl max-w-4xl w-full mx-4 relative">
+                    <button class="close-modal-btn absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-3xl font-bold transition-colors duration-200">&times;</button>
+                    <h2 class="text-2xl font-bold mb-6 text-center text-accent">All Products</h2>
+                    <div class="overflow-x-auto">
+                        <table class="product-table min-w-full bg-white rounded-lg">
+                            <thead>
+                                <tr class="bg-gray-200">
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody id="product-table-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(productTableModal);
+
+            window.openTableModal = () => {
+                const tableBody = document.getElementById('product-table-body');
+                tableBody.innerHTML = '';
+                productCardsAll.forEach(card => {
+                    const img = card.querySelector('img').src;
+                    const name = card.querySelector('h3').textContent;
+                    const category = card.getAttribute('data-category');
+                    const price = card.querySelector('p.text-lg').textContent;
+                    const row = document.createElement('tr');
+                    row.classList.add('hover:bg-gray-50', 'transition-colors', 'duration-200');
+                    row.innerHTML = `
+                        <td><img src="${img}" alt="${name}" class="h-16 w-16 object-cover rounded-md"></td>
+                        <td class="font-medium text-gray-800">${name}</td>
+                        <td class="capitalize text-gray-600">${category}</td>
+                        <td class="font-semibold text-gray-800">${price}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+                openModal('productTableModal');
+            };
+        });
+		
+    </script>
+</body>
+</html>
